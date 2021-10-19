@@ -11,13 +11,13 @@ library(ggplot2)
 library(dplyr)
 
 # wd
-setwd("~/Desktop/hult_NLP_student/lessons/class5/data")
+setwd("~/Documents/GitHub/LUX_NLP_student/lessons/oct19/data")
 
 # Data
 data('diamonds')
 
 # Convert to binary
-diamonds$icedOut <- ifelse(diamonds$price >= 11000,1, 0)
+diamonds$icedOut <- ifelse(diamonds$price >= 11000,1, 0) #GG: creating a dummy
 diamonds$price   <- NULL
 
 set.seed(1234)
@@ -34,7 +34,7 @@ xBeta <- coefficients(fit)
 
 # Add out model predictions; does this look like a good fit?
 p <- p + geom_abline(intercept =  0, slope = xBeta, color='red')
-p
+p #GG: criticizing linear probability model, but because they are concerned about prediction here
 
 # Suppose you *could* get a 12 carat diamond
 hopeDiamond  <- data.frame(carat = 12.22)

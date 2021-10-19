@@ -28,7 +28,7 @@ p <- ggplot(sampDiamonds, aes(carat, price)) +geom_point(alpha=0.02)
 p
 
 # Since we see a relationship let's make a linear model to predict prices
-fit <- lm(price ~ carat + 0, sampDiamonds)
+fit <- lm(price ~ carat + 0, sampDiamonds) #GG: forccing origin to be 0
 fit
 
 # Add out model predictions

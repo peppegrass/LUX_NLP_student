@@ -6,9 +6,9 @@
 #' Date: Dec 28 2020
 #'
 
-
+#GG: he prefers Lasso to Ridge when RHS vars are text (word dummies) because you can shrink some coefficients to 0. Useful because text is noisy and there are many words with no signal at all that should be dropped
 # Wd
-setwd("~/Desktop/hult_NLP_student/lessons/class5/data")
+setwd("~/Documents/GitHub/LUX_NLP_student/lessons/oct19/data")
 
 # Libs
 library(text2vec)
@@ -16,7 +16,7 @@ library(caret)
 library(tm)
 library(glmnet)
 
-# Custom cleaning function
+# Custom cleaning function #GG: pre-processing
 diagnosisClean<-function(xVec){
   xVec <- removePunctuation(xVec)
   xVec <- stripWhitespace(xVec)
@@ -27,13 +27,13 @@ diagnosisClean<-function(xVec){
 # Read
 diabetes <- read.csv('diabetes_subset_8500.csv')
 
-# Concantenate texts in 3 columns
+# Concantenate texts in 3 columns #GG: collapsing as single-agent records
 diabetes$diagnosisText <- as.character(paste(diabetes$diag_1_desc,
                                              diabetes$diag_2_desc,
                                              diabetes$diag_3_desc, sep=' '))
 
 ### SAMPLE : Patritioning
-idx              <- createDataPartition(diabetes$readmitted,p=.7,list=F)
+idx              <- createDataPartition(diabetes$readmitted,p=.7,list=F) #GG: createDataPartition() is caret function. I want 70% proportion. idx is an index of what rows to select versus not
 trainDiabetesTxt <- diabetes[idx,]
 testDiabetesTxt  <- diabetes[-idx,]
 
@@ -48,14 +48,14 @@ trainDiabetesTxt$diagnosisText <- diagnosisClean(trainDiabetesTxt$diagnosisText)
 
 # Initial iterator to make vocabulary
 iterMaker <- itoken(trainDiabetesTxt$diagnosisText, 
-                    preprocess_function = list(tolower), 
+                    preprocess_function = list(tolower), #GG: possible to pass in pre-processing functions
                     progressbar         = T)
 textVocab <- create_vocabulary(iterMaker, stopwords=stopwords('SMART'))
 head(textVocab)
 tail(textVocab)
 nrow(textVocab)
 
-#prune vocab to make DTM smaller
+#prune vocab to make DTM smaller #GG: chopping off terms with less then 10 counts, and enforcing proportions trimming (no need to do both)
 prunedtextVocab <- prune_vocabulary(textVocab,
                                     term_count_min = 10,
                                     doc_proportion_max = 0.5,
@@ -65,7 +65,7 @@ nrow(prunedtextVocab)
 # Using the pruned vocabulary to declare the DTM vectors 
 vectorizer <- vocab_vectorizer(prunedtextVocab)
 
-# Take the vocabulary lexicon and the pruned text function to make a DTM 
+# Take the vocabulary lexicon and the pruned text function to make a DTM #GG: created document-term matrix
 diabetesDTM <- create_dtm(iterMaker, vectorizer)
 dim(diabetesDTM)
 

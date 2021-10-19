@@ -5,9 +5,9 @@
 #' License: GPL>=3
 #' Date: Dec 28 2020
 #'
-
+#GG: re-listen at around 2 hours
 # Wd
-setwd("~/Desktop/hult_NLP_student/lessons/class5/data")
+setwd("~/Documents/GitHub/LUX_NLP_student/lessons/oct19/data")
 
 # Libs
 library(text2vec)
@@ -141,16 +141,16 @@ allPreds    <- as.logical(predict(allFit,cbind(diabetesDTM,
                                   s    = allFit$lambda.min))
 allROC<-roc((trainDiabetesTxt$readmitted*1), allPreds*1)
 
-plot(textROC,col="blue",main="BLUE = Text, RED = No Text, GREEN=All",adj=0)
-plot(noTextROC, add=TRUE,col="red", lty=2)
-plot(allROC,add=TRUE,col="darkgreen", lty=3)
+plot(textROC,col="blue",main="BLUE = Text, RED = No Text, GREEN=All",adj=0) ##GG: better than random. at 45 degree line would be performing as well as random. below curve would be worse than random. basically rubbish
+plot(noTextROC, add=TRUE,col="red", lty=2) #GG: even better
+plot(allROC,add=TRUE,col="darkgreen", lty=3) #GG: even better. If I understood correcyly this is an elastic net model based on both text and numeric features
 
 ### Apply to new patients requires the construction of the new patient DTM exaclty as the training set
 testIT   <- itoken(testDiabetesTxt$diagnosisText, 
                    tokenizer = word_tokenizer)
 
 # Use the same vectorizer but with new iterator
-testDTM <-create_dtm(testIT,vectorizer)
+testDTM <-create_dtm(testIT,vectorizer) #GG: vectorizer enforces that you have same number of columns as training data
 # not needed but you can xfer a tfidf too: testDTMtfidf <- transform_tfidf(testDTM, idf)
 
 # Append the DTM to the test patient data

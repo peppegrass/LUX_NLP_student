@@ -9,7 +9,7 @@
 # Libs
 
 # Setwd
-setwd("~/Desktop/hult_NLP_student/lessons/class5/data")
+setwd("~/Documents/GitHub/LUX_NLP_student/lessons/oct19/data")
 
 # Data
 houses <-read.csv('BostonHousing.csv')
@@ -31,7 +31,7 @@ plot(houses$RM, houses$MEDV, xlim=c(0,10), ylim = c(-35, 50))
 # This means for every room it adds 1 to the median value
 abline(0,1, col='red') #intercept, then slope
 
-# Fit a model (univariate) with no intercept
+# Fit a model (univariate) with no intercept #GG: forcing it at 0
 # The equation of this model is the Y ~ the variable RM and with +0 we are forcing there to be NO beta-naught
 fit <- lm(MEDV ~ RM + 0, trainSet)
 
@@ -90,5 +90,6 @@ ModelMetrics::rmse(testSet$MEDV, manualPreds)
 ModelMetrics::rmse(testSet$MEDV, preds1)
 ModelMetrics::rmse(testSet$MEDV, preds2)
 
+#GG: model fit2 performs the best also in validation
 
 # End
