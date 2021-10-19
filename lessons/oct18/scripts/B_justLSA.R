@@ -7,7 +7,7 @@
 #' Another good option
 
 # Set the working directory
-setwd("~/Documents/GitHub/LUX_NLP_student/lessons/oct15/data")
+setwd("~/Documents/GitHub/LUX_NLP_student/lessons/oct18/data")
 
 # Libs
 library(tm)
@@ -45,7 +45,8 @@ allTDM <- TermDocumentMatrix(allPosts,
                              control = list(weighting = weightTfIdf))
 allTDM
 
-# Get 20 latent topics #GG: computationally intensive
+# Get 20 latent topics 
+#GG: computationally intensive. We shrank over 26k terms contained in 2k documents in only 20 columnts. Shrinking of the vector space: going from a very sparse TDM matrix to denser data structure that is more useful for SL
 ##### Takes awhile, may crash small computers, so saved a copy
 #lsaTDM <- lsa(allTDM, 20)
 #saveRDS(lsaTDM, 'lsaTDM_tfidf.rds')
