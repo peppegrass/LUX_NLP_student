@@ -1,6 +1,7 @@
 #' Title: Elastic Net Example Ensemble 
 #' Purpose: Mix data types to improve a model
 #' Author: Ted Kwartler
+<<<<<<< HEAD
 #' email: edward.kwartler@hult.edu
 #' License: GPL>=3
 #' Date: Dec 28 2020
@@ -8,6 +9,15 @@
 #GG: re-listen at around 2 hours
 # Wd
 setwd("~/Documents/GitHub/LUX_NLP_student/lessons/oct19/data")
+=======
+#' email: edwardkwartler@fas.harvard.edu
+#' License: GPL>=3
+#' Date: Dec 28 2020
+#'
+
+# Wd
+setwd("/Users/edwardkwartler/Desktop/LUX_NLP_student/lessons/oct19/data")
+>>>>>>> 5239acfb293c063120a7eac91d25882503f325b6
 
 # Libs
 library(text2vec)
@@ -141,16 +151,31 @@ allPreds    <- as.logical(predict(allFit,cbind(diabetesDTM,
                                   s    = allFit$lambda.min))
 allROC<-roc((trainDiabetesTxt$readmitted*1), allPreds*1)
 
+<<<<<<< HEAD
 plot(textROC,col="blue",main="BLUE = Text, RED = No Text, GREEN=All",adj=0) ##GG: better than random. at 45 degree line would be performing as well as random. below curve would be worse than random. basically rubbish
 plot(noTextROC, add=TRUE,col="red", lty=2) #GG: even better
 plot(allROC,add=TRUE,col="darkgreen", lty=3) #GG: even better. If I understood correcyly this is an elastic net model based on both text and numeric features
+=======
+plot(textROC,col="blue",main="BLUE = Text, RED = No Text, GREEN=All",adj=0)
+plot(noTextROC, add=TRUE,col="red", lty=2)
+plot(allROC,add=TRUE,col="darkgreen", lty=3)
+
+# Examine train set accuracy
+Accuracy(predict(allFit,cbind(diabetesDTM,
+                              as.matrix(trainDiabetesTxt[,1:132])), type = 'class'),
+                 trainDiabetesTxt$readmitted)
+>>>>>>> 5239acfb293c063120a7eac91d25882503f325b6
 
 ### Apply to new patients requires the construction of the new patient DTM exaclty as the training set
 testIT   <- itoken(testDiabetesTxt$diagnosisText, 
                    tokenizer = word_tokenizer)
 
 # Use the same vectorizer but with new iterator
+<<<<<<< HEAD
 testDTM <-create_dtm(testIT,vectorizer) #GG: vectorizer enforces that you have same number of columns as training data
+=======
+testDTM <-create_dtm(testIT,vectorizer)
+>>>>>>> 5239acfb293c063120a7eac91d25882503f325b6
 # not needed but you can xfer a tfidf too: testDTMtfidf <- transform_tfidf(testDTM, idf)
 
 # Append the DTM to the test patient data

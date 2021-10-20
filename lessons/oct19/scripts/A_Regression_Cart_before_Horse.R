@@ -1,7 +1,11 @@
 #' Title: Regression
 #' Purpose: Learn about a regression model
 #' Author: Ted Kwartler
+<<<<<<< HEAD
 #' email: edward.kwartler@hult.edu
+=======
+#' email: edwardkwartler@fas.harvard.edu
+>>>>>>> 5239acfb293c063120a7eac91d25882503f325b6
 #' License: GPL>=3
 #' Date: Dec 28 2020
 #'
@@ -28,7 +32,11 @@ p <- ggplot(sampDiamonds, aes(carat, price)) +geom_point(alpha=0.02)
 p
 
 # Since we see a relationship let's make a linear model to predict prices
+<<<<<<< HEAD
 fit <- lm(price ~ carat + 0, sampDiamonds) #GG: forccing origin to be 0
+=======
+fit <- lm(price ~ carat + 0, sampDiamonds)
+>>>>>>> 5239acfb293c063120a7eac91d25882503f325b6
 fit
 
 # Add out model predictions

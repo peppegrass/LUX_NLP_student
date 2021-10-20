@@ -1,7 +1,11 @@
 #' Title: text2vec example
 #' Purpose: Perform text2vec to find abstractive relationships
 #' Author: Ted Kwartler
+<<<<<<< HEAD
 #' email: edward.kwartler@hult.edu
+=======
+#' email: edwardkwartler@fas.harvard.edu
+>>>>>>> 5239acfb293c063120a7eac91d25882503f325b6
 #' License: GPL>=3
 #' Date: Oct 18, 2021
 #'

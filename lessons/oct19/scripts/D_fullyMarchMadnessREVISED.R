@@ -1,7 +1,11 @@
 #' Title: Fully March Madness Revised
 #' Purpose: apply a logistic regression to basketball data
 #' Author: Ted Kwartler
+<<<<<<< HEAD
 #' email: edward.kwartler@hult.edu
+=======
+#' email: edwardkwartler@fas.harvard.edu
+>>>>>>> 5239acfb293c063120a7eac91d25882503f325b6
 #' License: GPL>=3
 #' Date: Dec 28 2020
 #'
@@ -13,7 +17,11 @@ library(pROC)
 library(ggplot2)
 
 # wd
+<<<<<<< HEAD
 setwd("~/Documents/GitHub/LUX_NLP_student/lessons/oct19/data")
+=======
+setwd("/Users/edwardkwartler/Desktop/LUX_NLP_student/lessons/oct19/data")
+>>>>>>> 5239acfb293c063120a7eac91d25882503f325b6
 
 # Data
 bball <- read.csv('ncaa.csv')
@@ -33,10 +41,17 @@ plan <- designTreatmentsC(bball,
                           targetVar, 1)
 
 # Apply to xVars
+<<<<<<< HEAD
 treatedX <- prepare(plan, bball) #GG: got warning because did not split data
 
 # Fit a logistic regression model
 fit <- glm(R1.Class.1.win ~., data = treatedX, family ='binomial') #GG: binomial is logistic in this jargon
+=======
+treatedX <- prepare(plan, bball)
+
+# Fit a logistic regression model
+fit <- glm(R1.Class.1.win ~., data = treatedX, family ='binomial')
+>>>>>>> 5239acfb293c063120a7eac91d25882503f325b6
 summary(fit)
 
 # Backward Variable selection to reduce chances of multi-colinearity
@@ -51,7 +66,11 @@ length(coefficients(fit))
 length(coefficients(bestFit))
 
 # Get predictions
+<<<<<<< HEAD
 teamPreds <- predict(bestFit, type='response') #GG: to get predictions instead of log odds
+=======
+teamPreds <- predict(bestFit, type='response')
+>>>>>>> 5239acfb293c063120a7eac91d25882503f325b6
 head(teamPreds)
 
 # Classify 
@@ -66,7 +85,11 @@ results <- data.frame(Name                = bball$Name,
                       ModelClassification = teamClasses)
 head(results,12)
 
+<<<<<<< HEAD
 # Get a confusion matrix #GG: to sort of visualize quality of prediction (false positives & false negatives)
+=======
+# Get a confusion matrix
+>>>>>>> 5239acfb293c063120a7eac91d25882503f325b6
 (confMat <- ConfusionMatrix(results$ModelClassification, results$actual))
 
 # What is the accuracy?
