@@ -8,11 +8,7 @@
 #'
 
 # WD
-<<<<<<< HEAD:lessons/oct19/scripts/G_text2vec.R
 setwd("~/Documents/GitHub/LUX_NLP_student/lessons/oct19/data")
-=======
-setwd("~/Desktop/LUX_NLP_student/lessons/oct20/data")
->>>>>>> 002fc7dfb17fbffb8527b52d73eee5b656055a5b:lessons/oct20/scripts/A_text2vec.R
 
 # Libs
 library(data.table)
@@ -35,17 +31,9 @@ airbnbTxt <- data.table(doc_id = airbnb$listing_id, #GG: keeping only vars that 
 rm(airbnb) #GG: detaching full file
 gc()
 
-<<<<<<< HEAD:lessons/oct19/scripts/G_text2vec.R
 # Apply standard cleaning #GG: These steps take a while so I've saved the rds and commented out some linew
 #txt <- VCorpus(DataframeSource(airbnbTxt))
 #txt <- cleanCorpus(txt, c(stopwords('en'), 'boston'))
-=======
-# Apply standard cleaning
-st<- Sys.time()
-txt <- VCorpus(DataframeSource(airbnbTxt))
-txt <- cleanCorpus(txt, c(stopwords('en'), 'boston'))
-Sys.time()-st
->>>>>>> 002fc7dfb17fbffb8527b52d73eee5b656055a5b:lessons/oct20/scripts/A_text2vec.R
 #saveRDS(txt,'txt.rds')
 txt <- readRDS('txt.rds')
 
@@ -78,8 +66,9 @@ tmDTM <- as.DocumentTermMatrix(tmDTM, weighting = 'weightTf') #GG: converting ob
 tmDTM
 rm(tmDTM) #GG: removed because we're not gonna use it. instead we create tcm
 
+# PPTX review skip gram method
 # Create the term-cooccurence matrix; "TCM matrix usually used with GloVe word embedding model."
-tcm <- create_tcm(iter, # tokenized & other tasks
+tcm <- create_tcm(iter, # tokenized & normalized stings
                   tokenVecs, # function: n-gram & specific word vec construction
                   skip_grams_window = 5, # token's context is defined by 5 words before and after
                   skip_grams_window_context = "symmetric") #GG: we want to keep terms that are shared across documents (overlap, common support)
@@ -98,16 +87,10 @@ st <- Sys.time()
 set.seed(123)
 contextGlove <- fitGlove$fit_transform(tcm, 
                                    n_iter = 10, 
-<<<<<<< HEAD:lessons/oct19/scripts/G_text2vec.R
                                    convergence_tol = 0.01, #GG: learning rate
                                    n_threads = 8) # Parallelize, if you have 8-core chip
 
 # According to the package author there are two vectors
-=======
-                                   convergence_tol = 0.01, 
-                                   n_threads = 8)
-Sys.time()-st
->>>>>>> 002fc7dfb17fbffb8527b52d73eee5b656055a5b:lessons/oct20/scripts/A_text2vec.R
 gloveContext <-  fitGlove$components
 dim(gloveContext) #GG: 50 vectors with all the 68898 tokens on top
 
@@ -133,15 +116,10 @@ cosSimilarity <- data.frame(term = rownames(cosSimilarity),
 cosSimilarity <- cosSimilarity[order(cosSimilarity$coSineSim, decreasing = T),]
 head(cosSimilarity, 20) #GG: this is the context by which people in their reviews are saying they had a good walk
 
-<<<<<<< HEAD:lessons/oct19/scripts/G_text2vec.R
 # Find the closest word vectors for dirty sinks in boston airbnb stays #GG: let's do the same with dirty stays
 dirtyStay <- wordVectors["dirty", , drop = FALSE] - 
   wordVectors["condition", , drop = FALSE] -
   wordVectors["clean", , drop = FALSE] 
-=======
-# Find the closest word vectors for dirty sinks in boston airbnb stays 
-dirtyStay <- wordVectors["dirty", , drop = FALSE] 
->>>>>>> 002fc7dfb17fbffb8527b52d73eee5b656055a5b:lessons/oct20/scripts/A_text2vec.R
 dirtyStay
 
 cosSimilarity <- sim2(x = wordVectors, 

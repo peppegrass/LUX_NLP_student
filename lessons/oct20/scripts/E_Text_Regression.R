@@ -6,11 +6,7 @@
 #' Date: Apr 7, 2021
 #'
 # Wd
-<<<<<<< HEAD
 setwd("~/Documents/GitHub/LUX_NLP_student/lessons/oct20/data")
-=======
-setwd("~/Desktop/LUX_NLP_student/lessons/oct20/data")
->>>>>>> 002fc7dfb17fbffb8527b52d73eee5b656055a5b
 
 # Libs
 library(text2vec)

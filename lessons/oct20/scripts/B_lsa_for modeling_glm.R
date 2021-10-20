@@ -8,11 +8,7 @@
 #' https://cran.r-project.org/web/packages/textmineR/vignettes/c_topic_modeling.html
 
 # Set the working directory
-<<<<<<< HEAD:lessons/oct20/scripts/B_lsa_for modeling_glm.R
 setwd("~/Documents/GitHub/LUX_NLP_student/lessons/oct20/data")
-=======
-setwd("~/Desktop/LUX_NLP_student/lessons/oct20/data")
->>>>>>> 002fc7dfb17fbffb8527b52d73eee5b656055a5b:lessons/oct20/scripts/A_lsa_for modeling_glm.R
 
 # Libs
 library(tm)
@@ -21,11 +17,7 @@ library(yardstick)
 library(ggplot2)
 
 # Bring in our supporting functions
-<<<<<<< HEAD:lessons/oct20/scripts/B_lsa_for modeling_glm.R
 source('~/Documents/GitHub/LUX_NLP_student/lessons/Z_otherScripts/ZZZ_supportingFunctions.R')
-=======
-source('~/Desktop/LUX_NLP_student/lessons/Z_otherScripts/ZZZ_supportingFunctions.R')
->>>>>>> 002fc7dfb17fbffb8527b52d73eee5b656055a5b:lessons/oct20/scripts/A_lsa_for modeling_glm.R
 
 # Options & Functions
 options(stringsAsFactors = FALSE, scipen = 999)
@@ -35,13 +27,8 @@ Sys.setlocale('LC_ALL','C')
 stops <- c(stopwords('SMART'), 'car', 'electronic')
 
 # Bring in some data
-<<<<<<< HEAD:lessons/oct20/scripts/B_lsa_for modeling_glm.R
 carCorp <- VCorpus(DirSource("~/Documents/GitHub/LUX_NLP_student/lessons/oct20/data/AutoAndElectronics/rec.autos"))
 electronicCorp <- VCorpus(DirSource("~/Documents/GitHub/LUX_NLP_student/lessons/oct20/data/AutoAndElectronics/sci.electronics"))
-=======
-carCorp <- VCorpus(DirSource("~/Desktop/LUX_NLP_student/lessons/oct20/data/AutoAndElectronics/rec.autos"))
-electronicCorp <- VCorpus(DirSource("~/Desktop/LUX_NLP_student/lessons/oct20/data/AutoAndElectronics/sci.electronics"))
->>>>>>> 002fc7dfb17fbffb8527b52d73eee5b656055a5b:lessons/oct20/scripts/A_lsa_for modeling_glm.R
 
 # Clean each one
 carCorp        <- cleanCorpus(carCorp, stops)

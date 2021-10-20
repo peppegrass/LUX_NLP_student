@@ -8,11 +8,7 @@
 
 #GG: he prefers Lasso to Ridge when RHS vars are text (word dummies) because you can shrink some coefficients to 0. Useful because text is noisy and there are many words with no signal at all that should be dropped
 # Wd
-<<<<<<< HEAD
 setwd("~/Documents/GitHub/LUX_NLP_student/lessons/oct19/data")
-=======
-setwd("~/Desktop/LUX_NLP_student/lessons/oct19/data")
->>>>>>> 002fc7dfb17fbffb8527b52d73eee5b656055a5b
 
 # Libs
 library(text2vec)

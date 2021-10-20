@@ -9,11 +9,7 @@
 #' https://cran.r-project.org/web/packages/RTextTools/index.html
 
 # Set the working directory
-<<<<<<< HEAD:lessons/oct20/scripts/C_lsa_for modeling_Bayesian.R
 setwd("~/Documents/GitHub/LUX_NLP_student/lessons/oct20/data")
-=======
-setwd("~/Desktop/LUX_NLP_student/lessons/oct20/data")
->>>>>>> 002fc7dfb17fbffb8527b52d73eee5b656055a5b:lessons/oct20/scripts/B_lsa_for modeling_Bayesian.R
 
 # Libs
 library(tm)
@@ -23,11 +19,7 @@ library(yardstick)
 library(ggplot2)
 
 # Bring in our supporting functions
-<<<<<<< HEAD:lessons/oct20/scripts/C_lsa_for modeling_Bayesian.R
 source('~/Documents/GitHub/LUX_NLP_student/lessons/Z_otherScripts/ZZZ_supportingFunctions.R')
-=======
-source('~/Desktop/LUX_NLP_student/lessons/Z_otherScripts/ZZZ_supportingFunctions.R')
->>>>>>> 002fc7dfb17fbffb8527b52d73eee5b656055a5b:lessons/oct20/scripts/B_lsa_for modeling_Bayesian.R
 
 # Options & Functions
 options(stringsAsFactors = FALSE, scipen = 999)
@@ -37,13 +29,8 @@ Sys.setlocale('LC_ALL','C')
 stops <- c(stopwords('SMART'), 'car', 'electronic')
 
 # Bring in some data
-<<<<<<< HEAD:lessons/oct20/scripts/C_lsa_for modeling_Bayesian.R
 carCorp <- VCorpus(DirSource("~/Documents/GitHub/LUX_NLP_student/lessons/oct20/data/AutoAndElectronics/rec.autos"))
 electronicCorp <- VCorpus(DirSource("~/Documents/GitHub/LUX_NLP_student/lessons/oct20/data/AutoAndElectronics/sci.electronics"))
-=======
-carCorp <- VCorpus(DirSource("~/Desktop/LUX_NLP_student/lessons/oct20/data/AutoAndElectronics/rec.autos"))
-electronicCorp <- VCorpus(DirSource("~/Desktop/LUX_NLP_student/lessons/oct20/data/AutoAndElectronics/sci.electronics"))
->>>>>>> 002fc7dfb17fbffb8527b52d73eee5b656055a5b:lessons/oct20/scripts/B_lsa_for modeling_Bayesian.R
 
 # Clean each one
 carCorp        <- cleanCorpus(carCorp, stops)
