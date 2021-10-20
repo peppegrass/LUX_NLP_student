@@ -7,7 +7,11 @@
 #' 
 
 # Set the working directory
+<<<<<<< HEAD:lessons/oct20/scripts/D_rtexttools.R
 setwd("~/Documents/GitHub/LUX_NLP_student/lessons/oct20/data")
+=======
+setwd("~/Desktop/LUX_NLP_student/lessons/oct20/data")
+>>>>>>> 002fc7dfb17fbffb8527b52d73eee5b656055a5b:lessons/oct20/scripts/C_rtexttools.R
 
 # Libs
 library(tm)
@@ -15,7 +19,11 @@ library(RTextTools)
 library(yardstick)
 
 # Bring in our supporting functions
+<<<<<<< HEAD:lessons/oct20/scripts/D_rtexttools.R
 source('~/Documents/GitHub/LUX_NLP_student/lessons/Z_otherScripts/ZZZ_supportingFunctions.R')
+=======
+source('~/Desktop/LUX_NLP_student/lessons/Z_otherScripts/ZZZ_supportingFunctions.R')
+>>>>>>> 002fc7dfb17fbffb8527b52d73eee5b656055a5b:lessons/oct20/scripts/C_rtexttools.R
 
 # Options & Functions
 options(stringsAsFactors = FALSE, scipen = 999)
@@ -83,10 +91,17 @@ cleanTest <- data.frame(text = unlist(sapply(cleanTest, `[`, "content")),
 # You have to combine the matrices to the original to get the tokens joined
 allDTM <- rbind(cleanTrain, cleanTest) #GG: in their workflow, they're rowbinding it to the training set, kinda painful
 allDTMm <- create_matrix(allDTM, language="english")
+<<<<<<< HEAD:lessons/oct20/scripts/D_rtexttools.R
 containerTest <- create_container(matrix    = allDTMm, #GG: this is how they do matrix matching
                                   labels    = diabetes$readmitted[idx], #GG: gotta be very explicit about these 3 parameters: #1
                                   trainSize = 1:length(idx), #GG: #2
                                   testSize  = (length(idx)+1):8500, #GG: #3
+=======
+containerTest <- create_container(matrix    = allDTMm,
+                                  labels    = diabetes$readmitted[idx], 
+                                  trainSize = 1:length(idx),
+                                  testSize  = (length(idx)+1):8500,
+>>>>>>> 002fc7dfb17fbffb8527b52d73eee5b656055a5b:lessons/oct20/scripts/C_rtexttools.R
                                   virgin=T)
 
 #testFit <- train_models(containerTest, algorithms=c("GLMNET", "SVM"))

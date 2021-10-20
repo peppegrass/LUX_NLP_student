@@ -7,7 +7,11 @@
 #'
 #GG: re-listen at around 2 hours
 # Wd
+<<<<<<< HEAD
 setwd("~/Documents/GitHub/LUX_NLP_student/lessons/oct19/data")
+=======
+setwd("~/Desktop/LUX_NLP_student/lessons/oct19/data")
+>>>>>>> 002fc7dfb17fbffb8527b52d73eee5b656055a5b
 
 # Libs
 library(text2vec)

@@ -13,7 +13,11 @@ library(pROC)
 library(ggplot2)
 
 # wd
+<<<<<<< HEAD
 setwd("~/Documents/GitHub/LUX_NLP_student/lessons/oct19/data")
+=======
+setwd("~/Desktop/LUX_NLP_student/lessons/oct19/data")
+>>>>>>> 002fc7dfb17fbffb8527b52d73eee5b656055a5b
 
 # Data
 bball <- read.csv('ncaa.csv')
