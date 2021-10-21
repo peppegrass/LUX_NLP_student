@@ -7,11 +7,14 @@
 #'
 
 # libraries
-library(rvest)
-
-# Get the webpage
+library(rvest) #GG: R data harvesting package. Python's is beautifulsoup
+# GG: webscraping: extracting info from webpage (without requesting them via an API basically). If you're trying to block you should accept. FB doesn't allow by their terms of services to scrape them. Respect terms of service. Grey area.
+# GG: everything you see (on your client side) can be scraped.
+# GG: websites changes, so the scraping code needs to be updated all the time. On the other hand, JSON info more stable. Websites change more on the front-end (user experience) and less on the back-end (API)
+# GG: always check for API first!
+# Get the webpage #GG: you wanna use the "Elements" developer tab in chrome
 movieURL <- 'https://www.imdb.com/title/tt0058331'
-movie <- read_html(movieURL)
+movie <- read_html(movieURL) #GG: grabbing the HTML
 movie
 
 # Numeric info
@@ -22,7 +25,7 @@ rating <- movie %>%
 rating
 
 # _somtimes_ helpful to see all nodes
-castURL <- paste0(movieURL,'/fullcredits')
+castURL <- paste0(movieURL,'/fullcredits') #GG: adding "/fullcredits/" to the URL
 # https://www.imdb.com/title/tt0058331/fullcredits
 castURL %>%
   read_html() %>%
@@ -34,15 +37,15 @@ castURL %>%
 cast <- castURL %>%
   read_html() %>%
   html_nodes('#fullcredits_content') %>%
-  html_nodes("tr") %>%
+  html_nodes("tr") %>% #GG: extracting the table rows
   html_text()
 cast
-
+#GG: keep scrolling around with the "Elements" tab open and hover on the elements you are interested in to see where they are in the HTML
 # Webscraping is messy!
 cast  <- gsub("[\r\n]", "", cast)
 cast  <- lapply(cast, trimws)
 cast  <- unlist(cast)
-cast2 <- strsplit(cast, '[...]')
+cast2 <- strsplit(cast, '[...]') #GG: coz ellipses (...) is a column breaker
 part  <- lapply(cast2, tail, 1) %>% unlist() %>% trimws()
 actor <- lapply(cast2, head, 1) %>% unlist() %>% trimws()
 
@@ -61,7 +64,7 @@ gsub('/title/tt0058331','',mediaURLS[1])
 postURL <- paste0(movieURL,gsub('/title/tt0058331','',mediaURLS[1]))
 postURL
 
-# Storyline
+# Storyline #GG: storyline section
 storyline <- movie %>%
   html_nodes(xpath = '/html/body/div[2]/main/div/section[1]/div/section/div/div[1]/section[6]/div[2]/div[1]/div[1]/div/text()') %>%
   html_text() 
@@ -76,3 +79,4 @@ movieGross <- gsub('Gross US & Canada|[$]|,','',movieGross)
 movieGross <- as.numeric(movieGross)
 movieGross
 # End
+

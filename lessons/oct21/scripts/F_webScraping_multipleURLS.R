@@ -5,22 +5,24 @@
 #' License: GPL>=3
 #' Date: Oct 20, 2021
 #' 
-
+#GG: this sounds similar to the exercise about economists that we did with Nikos by scraping Repec
 # Library
 library(rvest)
 library(stringi)
 
 # wd
-setwd("~/Desktop/LUX_NLP_student/lessons/oct21/data")
+setwd("~/Documents/GitHub/LUX_NLP_student/lessons/oct21/data")
 
 # Instructor Page
 webpage <- 'http://www.gserm.ch/stgallen/instructors/'
 
 # Get all links
-getLinks <- read_html(webpage) %>% html_nodes(xpath='/html/body/div[1]/div/a') %>%
-  #html_nodes(".instructor") %>% 
+getLinks <- read_html(webpage) %>% html_nodes(xpath='/html/body/div[1]/div/a') %>% #GG: this is not regex, it is xpath. it is a language related to html structure
+  #html_nodes(".instructor") %>% #GG: ".instructor" is also CSS  #GG: selector gadget extension for chrome. useful, i.e. under header 3 (CSS node H3) OR (if not CSS), open up and inspect nodes in xpath structure
   html_attr('href')
 getLinks
+# GG: inspect -> xpath -> if you wanna use xpath you have to declare "html_nodes(xpath=)" -> right click in the HTML -> "copy full xpath"
+# GG: selector gadget -> CSS
 
 # Extract and clean names
 instructorNames <- gsub('https://www.gserm.ch/stgallen/instructor/',

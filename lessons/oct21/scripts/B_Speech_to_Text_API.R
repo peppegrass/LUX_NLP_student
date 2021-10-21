@@ -8,25 +8,25 @@
 #' but there are other APIs
 #' Refs: https://cran.r-project.org/web/packages/googleLanguageR/vignettes/setup.html
 #' http://code.markedmondson.me/googleLanguageR/index.html
-#' IT COSTS MONEY, SO BE CAREFUL
+#' IT COSTS MONEY, SO BE CAREFUL #GG: !!! Also not super intuitive 9-10 documentation
 
 # libs
 library(googleLanguageR)
 
 #wd
-setwd("~/Desktop/LUX_NLP_student/lessons/oct21/data")
+setwd("~/Documents/GitHub/LUX_NLP_student/lessons/oct21/data")
 
 # Authenticate
-#gl_auth('~/Documents/googleCreds/speech2txt-25cb48408ae7.json')
+#gl_auth('~/Documents/googleCreds/speech2txt-25cb48408ae7.json') #GG: google language authentication has to be pointed to the project json file
 
 
 #### General NLP API
-# Google NLP - Named Entity Analysis (R has this for free w/library openNLP)
-# Google NLP - Part of Speech Tagging (R has this for free w/library UDpipe)
-# Google NLP - Sentiment (R has this for free w/multiple libs and approaches)
-# Google NLP - Document Tagging (R *could* do this as a multi-class problem)
-texts     <- paste(readLines('C05791318.txt'), collapse = ' ')
-#nlpResult <- gl_nlp(texts)
+# Google NLP - Named Entity Analysis (R has this for free w/library openNLP) #GG: google would be better, but you gotta pay
+# Google NLP - Part of Speech Tagging (R has this for free w/library UDpipe) #GG: same
+# Google NLP - Sentiment (R has this for free w/multiple libs and approaches) #GG: same
+# Google NLP - Document Tagging (R *could* do this as a multi-class problem) #GG: could do this but gotta build multiclass classification model (more painful)
+texts     <- paste(readLines('C05791318.txt'), collapse = ' ') #GG: emails from Hillary Clinton that we saw in the other exercise
+#nlpResult <- gl_nlp(texts) #GG: send data to google servers and get a result. you gotta pay each time so we're gonna save the heck out of it
 #saveRDS(nlpResult,'nlpResult.rds')
 nlpResult <-readRDS('nlpResult.rds')
 
@@ -36,7 +36,7 @@ nlpResult$tokens
 nlpResult$language
 
 # Sentiment
-nlpResult$documentSentiment$score
+nlpResult$documentSentiment$score #GG: google says nothing about the accuracy
 
 # Tagged Topic
 nlpResult$classifyText
@@ -45,7 +45,7 @@ nlpResult$classifyText
 text <- "Text Mining in Practice with R. It's the math of talking, you're two favorite things! "
 
 ## translate British into Danish
-#translatedTxt <- gl_translate(text, target = "da")
+#translatedTxt <- gl_translate(text, target = "da") #GG: google language translate
 #saveRDS(translatedTxt, 'translatedTxt.rds')
 translatedTxt <- readRDS('translatedTxt.rds')
 translatedTxt$translatedText
@@ -62,7 +62,7 @@ speechToTxt$transcript
 # Timed Text
 speechToTxt$timings
 
-# Text to Audio;requires the text-to-speech api enabled
+# Text to Audio;requires the text-to-speech api enabled #GG: other way around
 gl_talk_player(gl_talk(text, 
                output = 'someAudio.wav',
                gender = 'FEMALE'))

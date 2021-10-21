@@ -5,20 +5,21 @@
 #' License: GPL>=3
 #' Date: June 17, 2021
 #'
-
+#GG: API better than webscraping. because when you build script for webscraping you have to customize script for each page
+#GG: information in json from API are much cleaner. You get the numerics you need more neatly arranged. You get to the data more easily
 # Libraries
-library(jsonlite)
-library(xts)
-library(zoo)
-library(dygraphs)
-library(lubridate)
+library(jsonlite) #GG: make request
+library(xts) #GG: timeseries lib
+library(zoo) #GG: timeseries lib
+library(dygraphs) #GG: graphics
+library(lubridate) #GG: working with dates
 
 # Original pages
 # https://projects.fivethirtyeight.com/trump-approval-ratings/
 # https://projects.fivethirtyeight.com/biden-approval-rating/
 
 # Developer Tab has two API endpoints
-historicalURL <- 'https://projects.fivethirtyeight.com/biden-approval-rating/historical-approval.json'
+historicalURL <- 'https://projects.fivethirtyeight.com/biden-approval-rating/historical-approval.json' #GG: does not have expiration date. static data. contrast with line 22 URL of "A_youtubeAPI_example.R". "&expire" is the parameter for the expiration date
 
 presURL <- 'https://projects.fivethirtyeight.com/biden-approval-rating/approval.json'
 # Table Info
