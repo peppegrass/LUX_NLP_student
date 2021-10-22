@@ -5,7 +5,7 @@
 #'Megacorp is a hypothetical large and successful corporation that makes modern high-tech products. Whenever Megacorp advertises new job vacancies, their human resources team are overwhelmed by the many people who apply for a role. They want an automated process to filter through the resumes, to give them a short list of applicants who match best. Megacorp has a database containing the resumes and hiring results of applicants from the past few years. They track variables like age, gender, education and other details around the job applicant’s profile, and they want to use the text from the resume but NOT the sensitive features.
 
 # Set WD
-setwd("~/Desktop/LUX_NLP_student/lessons/oct22/data")
+setwd("~/Documents/GitHub/LUX_NLP_student/lessons/oct22/data")
 options(scipen = 999)
 
 # Libs
@@ -65,10 +65,10 @@ dim(trainingDTM)
 
 # Append DTM to original data
 allCandidateData <- cbind(trainCandidates, as.matrix(trainingDTM))
-names(allCandidateData)
+names(allCandidateData) #GG: features of the dataset
 
 # Let's drop ApplicationID,AgeBracket, Gender and raw text Summary
-drops <- c('ApplicationID', 'AgeBracket', 'Gender', 'Summary')
+drops <- c('ApplicationID', 'AgeBracket', 'Gender', 'Summary') #GG: we want to drop name, age, gender, and summary because they may lead to discrimination
 allCandidateData <- allCandidateData[, !(names(allCandidateData) %in% drops)]
 
 # Now let's prepare for modeling by making dummy variables
@@ -100,7 +100,7 @@ trainPreds   <- predict(candidateFit,
                         type = 'class',
                         s    = candidateFit$lambda.min)
 table(trainPreds, trainCandidates$Hired)
-Accuracy(trainPreds, trainCandidates$Hired)
+Accuracy(trainPreds, trainCandidates$Hired) #GG: model seems accurate, let's take a look at the test set
 
 ## Test Set Prep
 # Cleaning
@@ -128,9 +128,9 @@ testPreds   <- predict(candidateFit,
                         type = 'class',
                         s    = candidateFit$lambda.min)
 table(testPreds, testCandidates$Hired)
-Accuracy(testPreds, testCandidates$Hired)
+Accuracy(testPreds, testCandidates$Hired) #GG: again accuracy seems good
 
-# Let's investigate further
+# Let's investigate further #GG: let's now append the protected features and see what happens
 trainDF <- data.frame(Preds  = trainPreds[,1], 
                      actuals    = trainCandidates$Hired,
                      AgeBracket = trainCandidates$AgeBracket,
@@ -141,7 +141,7 @@ testDF <- data.frame(Preds  = testPreds[,1],
                      Gender     = testCandidates$Gender)
 head(trainDF)
 
-# Model behavior
+# Model behavior #GG: model behaves bad on training set
 # Test for equal representation "positive class parity" for every one
 # 40 and over candidate predicted to be hired, 
 # how many under 40 candidates are predicted to be hired? 
@@ -158,13 +158,13 @@ dem_parity(data = trainDF,
            group = 'Gender',
            preds = 'Preds', base = 'Male')
 
-# Uh oh!  What about test set?
+# Uh oh!  What about test set? #GG: behaves a bit better in the test set
 dem_parity(data = testDF, 
            outcome = 'actuals', 
            group = 'Gender',
            preds = 'Preds', base = 'Male')
 
-# Since gender was removed, let's figure out whats happening.
+# Since gender was removed, let's figure out whats happening. #GG: now we're modelling/predicting gender as a function of other features
 genderFit <- cv.glmnet(as.matrix(allCandidateData),
                           y=as.factor(trainCandidates$Gender), #predicting "male"
                           alpha=0.9,
@@ -182,5 +182,8 @@ bestTerms <- bestTerms[order(bestTerms$value, decreasing=T), ] #proxies
 # Indicative of "male"
 head(bestTerms, 15)
 
+#GG: extracurricular activities like hockey predict male. (Btw, this sounds like it could be a nice IV!)
+#GG: So in this case, they would also drop these info to avoid injecting bias in the model at the cost of losing some accuracy
+#GG: could look at papers that use resume data
 
 # End
