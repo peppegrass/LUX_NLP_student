@@ -11,7 +11,7 @@
 
 
 # Wd
-setwd("~/Desktop/LUX_NLP_student/lessons/oct22/data")
+setwd("~/Documents/GitHub/LUX_NLP_student/lessons/oct22/data")
 
 # libs
 library(tesseract)

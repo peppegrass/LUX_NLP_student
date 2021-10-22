@@ -10,7 +10,7 @@ library(pdftools)
 
 # From library docs; single file
 pdf_file <- file.path(R.home("doc"), "NEWS.pdf")
-text <- pdf_text(pdf_file)
+text <- pdf_text(pdf_file) #GG: pretty messy
 
 # Pretend we have three docs
 pdfFiles  <- rep(pdf_file, 3)
@@ -27,3 +27,4 @@ finalDocs <- data.frame(doc_id = pdfFiles,
                         text   = threeDocs)
 write.csv(finalDocs, 'someName.csv', row.names = F)
 # End
+

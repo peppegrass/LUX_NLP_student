@@ -11,7 +11,7 @@ library(docxtractr)
 library(xml2)
 
 # wd
-setwd("~/Desktop/LUX_NLP_student/lessons/oct22/data")
+setwd("~/Documents/GitHub/LUX_NLP_student/lessons/oct22/data")
 
 # file
 filePath <- 'exampleWord.docx'

@@ -10,7 +10,7 @@
 library(readxl)
 
 # wd
-setwd("~/Desktop/LUX_NLP_student/lessons/oct22/data")
+setwd("~/Documents/GitHub/LUX_NLP_student/lessons/oct22/data")
 
 # File Path
 filePath <- 'exampleExcel.xlsx'
