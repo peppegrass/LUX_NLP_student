@@ -42,16 +42,11 @@ nlpResult$documentSentiment$score #GG: google says nothing about the accuracy
 nlpResult$classifyText
 
 #### Google Translation API
-text <- "Text Mining in Practice with R. It's the math of talking, your two favorite things! "
+text <- "Text Mining in Practice with R. It's the math of talking, you're two favorite things! "
 
 ## translate British into Danish
-<<<<<<< HEAD
 #translatedTxt <- gl_translate(text, target = "da") #GG: google language translate
 #saveRDS(translatedTxt, 'translatedTxt.rds')
-=======
-#translatedTxt <- gl_translate(text, target = "fr")
-#saveRDS(translatedTxt, 'translatedTxt_FR.rds')
->>>>>>> 9a8299967a5a9d7bd03b4c7df4d4fe1b91ae20bd
 translatedTxt <- readRDS('translatedTxt.rds')
 translatedTxt$translatedText
 
